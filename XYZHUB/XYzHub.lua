@@ -14,7 +14,7 @@ else
 	end
 end
 
-local RadientPaid = {}
+local StarHub = {}
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
@@ -26,15 +26,15 @@ local user
 local tag
 local userinfo = {}
 
-_G.Key = ""
-_G.Discord = ""
+_G.StarHub = "Star"
+_G.Version = "Paid"
 
-if game.CoreGui:FindFirstChild(_G.Key .."," .. _G.Discord) then
-	game.CoreGui:FindFirstChild(_G.Key .."," .. _G.Discord):Destroy()
- end
+if game.CoreGui:FindFirstChild(_G.StarHub .."," .. _G.Version) then
+	game.CoreGui:FindFirstChild(_G.StarHub .."," .. _G.Version):Destroy()
+end
 
 pcall(function()
-	userinfo = HttpService:JSONDecode(readfile("Radient.txt"));
+	userinfo = HttpService:JSONDecode(readfile("Star.txt"));
 end)
 
 pfp = userinfo["pfp"] or "https://www.roblox.com/headshot-thumbnail/image?userId=".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
@@ -45,7 +45,7 @@ local function SaveInfo()
 	userinfo["pfp"] = pfp
 	userinfo["user"] = user
 	userinfo["tag"] = tag
-	writefile("Radient.txt", HttpService:JSONEncode(userinfo));
+	writefile("StarHub.txt", HttpService:JSONEncode(userinfo));
 end
 
 local function MakeDraggable(topbarobject, object)
@@ -95,20 +95,19 @@ local function MakeDraggable(topbarobject, object)
 		end)
 end
 
-local RadientPaidSC = Instance.new("ScreenGui")
-RadientPaidSC.Name = _G.Key .."," .. _G.Discord
-RadientPaidSC.Parent = game:GetService("CoreGui")
-RadientPaidSC.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+local StarHubPaid = Instance.new("ScreenGui")
+StarHubPaid.Name = _G.StarHub .."," .. _G.Version
+StarHubPaid.Parent = game.CoreGui
+StarHubPaid.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 game:GetService("UserInputService").InputBegan:connect(function(inputObject, gameProcessedEvent)
 	if inputObject.KeyCode == Enum.KeyCode.RightControl then
 		wait()
-		RadientPaidSC.Enabled = not RadientPaidSC.Enabled
+		StarHubPaid.Enabled = not StarHubPaid.Enabled
 	end
 end)
 
-function RadientPaid:Window(text,maincolor)
-
+function StarHub:Window(text)
 	local currentservertoggled = ""
 	local minimized = false
 	local fs = false
@@ -134,17 +133,17 @@ function RadientPaid:Window(text,maincolor)
 	local ServersHoldLayout = Instance.new("UIListLayout")
 	local ServersHoldPadding = Instance.new("UIPadding")
 	local TopFrameHolder = Instance.new("Frame")
-	local TopFramess = Instance.new("Frame")
 
 	MainFrame.Name = "MainFrame"
-	MainFrame.Parent = RadientPaidSC
+	MainFrame.Parent = StarHubPaid
 	MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 	MainFrame.BackgroundColor3 = Color3.fromRGB(15,15,15)
-	MainFrame.BackgroundTransparency = 1
 	MainFrame.BorderSizePixel = 0
 	MainFrame.ClipsDescendants = true
 	MainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
-	MainFrame.Size = UDim2.new(0, 611, 0, 396)
+	MainFrame.Size = UDim2.new(0, 611, 0, 0)
+
+	MainFrame:TweenSize(UDim2.new(0, 611, 0, 396), Enum.EasingDirection.Out, Enum.EasingStyle.Back, 0.2, true)
 
 	Corner_1.CornerRadius = UDim.new(0, 7)
 	Corner_1.Name = "UserIconCorner"
@@ -152,20 +151,11 @@ function RadientPaid:Window(text,maincolor)
 
 	TopFrame.Name = "TopFrame"
 	TopFrame.Parent = MainFrame
-	TopFrame.BackgroundColor3 = Color3.fromRGB(255,255,255)
-	TopFrame.BackgroundTransparency = 1
+	TopFrame.BackgroundColor3 = Color3.fromRGB(20,20,20)
+	TopFrame.BackgroundTransparency = 1.000
 	TopFrame.BorderSizePixel = 0
 	TopFrame.Position = UDim2.new(-0.000658480625, 0, 0, 0)
 	TopFrame.Size = UDim2.new(0, 681, 0, 22)
-
-	TopFramess.Name = "TopFramess"
-	TopFramess.Parent = TopFrame
-	TopFramess.BackgroundColor3 = Color3.fromRGB(255,255,255)
-	TopFramess.BackgroundTransparency = 1
-	TopFramess.BorderSizePixel = 0
-	TopFramess.ZIndex = 99
-	TopFramess.Position = UDim2.new(-0.2, 0, 1.3, 0)
-	TopFramess.Size = UDim2.new(0, 681, 0, 22)
 
 	TopFrameHolder.Name = "TopFrameHolder"
 	TopFrameHolder.Parent = TopFrame
@@ -184,20 +174,19 @@ function RadientPaid:Window(text,maincolor)
 	Title.Size = UDim2.new(0, 192, 0, 23)
 	Title.Font = Enum.Font.GothamBold
 	Title.Text = text
-	Title.TextTransparency = 0
-	Title.TextColor3 = Color3.fromRGB(255,255,255)
+	Title.TextColor3 = _G.Color
 	Title.TextSize = 13.000
 	Title.TextXAlignment = Enum.TextXAlignment.Left
 
 	CloseBtn.Name = "CloseBtn"
 	CloseBtn.Parent = TopFrame
 	CloseBtn.BackgroundColor3 = Color3.fromRGB(15,15,15)
-	CloseBtn.BackgroundTransparency = 1
-	CloseBtn.Position = UDim2.new(0.85, 0, 1.3, 0)
+	CloseBtn.BackgroundTransparency = 0
+	CloseBtn.Position = UDim2.new(0.85, 0, -0.0169996787, 0)
 	CloseBtn.Size = UDim2.new(0, 28, 0, 22)
 	CloseBtn.Font = Enum.Font.Gotham
 	CloseBtn.Text = ""
-	CloseBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+	CloseBtn.TextColor3 = _G.Color
 	CloseBtn.TextSize = 14.000
 	CloseBtn.BorderSizePixel = 0
 	CloseBtn.AutoButtonColor = false
@@ -214,12 +203,12 @@ function RadientPaid:Window(text,maincolor)
 	MinimizeBtn.Name = "MinimizeButton"
 	MinimizeBtn.Parent = TopFrame
 	MinimizeBtn.BackgroundColor3 = Color3.fromRGB(15,15,15)
-	MinimizeBtn.BackgroundTransparency = 1
-	MinimizeBtn.Position = UDim2.new(0.8, 0, 1.3, 0)
+	MinimizeBtn.BackgroundTransparency = 0
+	MinimizeBtn.Position = UDim2.new(0.8, 0, -0.0169996787, 0)
 	MinimizeBtn.Size = UDim2.new(0, 28, 0, 22)
 	MinimizeBtn.Font = Enum.Font.Gotham
 	MinimizeBtn.Text = ""
-	MinimizeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+	MinimizeBtn.TextColor3 = _G.Color
 	MinimizeBtn.TextSize = 14.000
 	MinimizeBtn.BorderSizePixel = 0
 	MinimizeBtn.AutoButtonColor = false
@@ -254,14 +243,14 @@ function RadientPaid:Window(text,maincolor)
 	UserIconCorner.Name = "UserIconCorner"
 	UserIconCorner.Parent = UserIcon
 
-	--รูปที่อยู่มุมล่าง
 	UserImage.Name = "UserImage"
 	UserImage.Parent = UserIcon
 	UserImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	UserImage.BackgroundTransparency = 1.000
 	UserImage.Size = UDim2.new(0, 32, 0, 32)
-	UserImage.Image = "http://www.roblox.com/asset/?id=0"
-	-----------------------------------------------------------------
+	UserImage.Image = pfp
+	UserImage.ImageTransparency = 1
+
 	UserCircleImage.Name = "UserImage"
 	UserCircleImage.Parent = UserImage
 	UserCircleImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -279,25 +268,25 @@ function RadientPaid:Window(text,maincolor)
 	UserName.Size = UDim2.new(0, 98, 0, 17)
 	UserName.Font = Enum.Font.GothamSemibold
 	UserName.TextSize = 13.000
-	UserName.TextTransparency = 1
 	UserName.TextXAlignment = Enum.TextXAlignment.Left
 	UserName.ClipsDescendants = true
+	UserName.TextTransparency = 1
 
 	UserTag.Name = "UserTag"
 	UserTag.Parent = Userpad
 	UserTag.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	UserTag.BackgroundTransparency = 1.000
 	UserTag.BorderSizePixel = 0
-	UserTag.Position = UDim2.new(0.230000004, 0, 0.275000013, 0)
+	UserTag.Position = UDim2.new(0.230000004, 0, 0.455000013, 0)
 	UserTag.Size = UDim2.new(0, 95, 0, 17)
-	UserTag.Font = Enum.Font.GothamBold
-	UserTag.TextColor3 = Color3.fromRGB(86, 217, 252)
+	UserTag.Font = Enum.Font.Gotham
+	UserTag.TextColor3 = _G.Color
 	UserTag.TextSize = 13.000
-	UserTag.TextTransparency = 0
 	UserTag.TextXAlignment = Enum.TextXAlignment.Left
+	UserTag.TextTransparency = 1
 
-	UserName.Text = "Support Mobile"
-	UserTag.Text = "" .. "Moblie Support!"
+	UserName.Text = user
+	UserTag.Text = "#" .. tag
 
 	ServersHoldFrame.Name = "ServersHoldFrame"
 	ServersHoldFrame.Parent = MainFrame
@@ -328,7 +317,7 @@ function RadientPaid:Window(text,maincolor)
 
 	CloseBtn.MouseButton1Click:Connect(
 		function()
-			MainFrame:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .5, true)
+			MainFrame:TweenSize(UDim2.new(0, 611, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .5, true)
 		end
 	)
 
@@ -360,7 +349,7 @@ function RadientPaid:Window(text,maincolor)
 		function()
 			if minimized == false then
 				MainFrame:TweenSize(
-					UDim2.new(0, 611, 0, 64),
+					UDim2.new(0, 611, 0, 22),
 					Enum.EasingDirection.Out,
 					Enum.EasingStyle.Quart,
 					.3,
@@ -386,12 +375,13 @@ function RadientPaid:Window(text,maincolor)
 	SettingsOpenBtn.Parent = Userpad
 	SettingsOpenBtn.BackgroundColor3 = Color3.fromRGB(53, 56, 62)
 	SettingsOpenBtn.BackgroundTransparency = 1.000
-	SettingsOpenBtn.Position = UDim2.new(0.849161983, 0, 0.279069781, 0)
+	SettingsOpenBtn.Position = UDim2.new(0.03, 0, 0.2, 0)
 	SettingsOpenBtn.Size = UDim2.new(0, 0, 0, 0)
 	SettingsOpenBtn.Font = Enum.Font.SourceSans
 	SettingsOpenBtn.Text = ""
 	SettingsOpenBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
 	SettingsOpenBtn.TextSize = 14.000
+
 
 	SettingsOpenBtnIco.Name = "SettingsOpenBtnIco"
 	SettingsOpenBtnIco.Parent = SettingsOpenBtn
@@ -399,7 +389,7 @@ function RadientPaid:Window(text,maincolor)
 	SettingsOpenBtnIco.BackgroundTransparency = 1.000
 	SettingsOpenBtnIco.Size = UDim2.new(0, 0, 0, 0)
 	SettingsOpenBtnIco.ImageTransparency = 1
-	SettingsOpenBtnIco.Image = "http://www.roblox.com/asset/?id=6031280882"
+	SettingsOpenBtnIco.Image = "http://www.roblox.com/asset/?id=8968329498"
 	SettingsOpenBtnIco.ImageColor3 = Color3.fromRGB(220, 220, 220)
 	local SettingsFrame = Instance.new("Frame")
 	local Settings = Instance.new("Frame")
@@ -484,7 +474,7 @@ function RadientPaid:Window(text,maincolor)
 
 	CloseSettingsBtnCircle.Name = "CloseSettingsBtnCircle"
 	CloseSettingsBtnCircle.Parent = CloseSettingsBtn
-	CloseSettingsBtnCircle.BackgroundColor3 = Color3.fromRGB(54, 57, 63)
+	CloseSettingsBtnCircle.BackgroundColor3 = _G.Color
 	CloseSettingsBtnCircle.Position = UDim2.new(0.0879999995, 0, 0.118000001, 0)
 	CloseSettingsBtnCircle.Size = UDim2.new(0, 24, 0, 24)
 
@@ -494,7 +484,7 @@ function RadientPaid:Window(text,maincolor)
 
 	CloseSettingsBtnIcon.Name = "CloseSettingsBtnIcon"
 	CloseSettingsBtnIcon.Parent = CloseSettingsBtnCircle
-	CloseSettingsBtnIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	CloseSettingsBtnIcon.BackgroundColor3 = _G.Color
 	CloseSettingsBtnIcon.BackgroundTransparency = 1.000
 	CloseSettingsBtnIcon.Position = UDim2.new(0, 2, 0, 2)
 	CloseSettingsBtnIcon.Size = UDim2.new(0, 19, 0, 19)
@@ -523,7 +513,7 @@ function RadientPaid:Window(text,maincolor)
 	end)
 
 	CloseSettingsBtn.MouseEnter:Connect(function()
-		CloseSettingsBtnCircle.BackgroundColor3 = Color3.fromRGB(72,76,82)
+		CloseSettingsBtnCircle.BackgroundColor3 = _G.Color
 	end)
 
 	CloseSettingsBtn.MouseLeave:Connect(function()
@@ -723,7 +713,7 @@ function RadientPaid:Window(text,maincolor)
 	SearchIco.BackgroundTransparency = 1.000
 	SearchIco.Position = UDim2.new(0.150000006, 0, 0.100000001, 0)
 	SearchIco.Size = UDim2.new(0, 15, 0, 15)
-	SearchIco.Image = "http://www.roblox.com/asset/?id=6034407084"
+	SearchIco.Image = "http://www.roblox.com/asset/?id=8968329498"
 	SearchIco.ImageColor3 = Color3.fromRGB(114, 118, 125)
 
 	UserPanelUserIcon.MouseEnter:Connect(function()
@@ -744,7 +734,7 @@ function RadientPaid:Window(text,maincolor)
 		NotificationHolder.AutoButtonColor = false
 		NotificationHolder.Font = Enum.Font.SourceSans
 		NotificationHolder.Text = ""
-		NotificationHolder.TextColor3 = Color3.fromRGB(0, 0, 0)
+		NotificationHolder.TextColor3 = _G.Color
 		NotificationHolder.TextSize = 14.000
 		NotificationHolder.BackgroundTransparency = 1
 		NotificationHolder.Visible = true
@@ -1149,7 +1139,7 @@ function RadientPaid:Window(text,maincolor)
 	SettingsTitle.Size = UDim2.new(0, 65, 0, 19)
 	SettingsTitle.Font = Enum.Font.GothamBlack
 	SettingsTitle.Text = "SETTINGS"
-	SettingsTitle.TextColor3 = Color3.fromRGB(142, 146, 152)
+	SettingsTitle.TextColor3 = Color3.fromRGB(255, 146, 152)
 	SettingsTitle.TextSize = 11.000
 	SettingsTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1161,7 +1151,7 @@ function RadientPaid:Window(text,maincolor)
 	DiscordInfo.Size = UDim2.new(0, 133, 0, 44)
 	DiscordInfo.Font = Enum.Font.Gotham
 	DiscordInfo.Text = "Stable 1.0.0 (00001)  Host 0.0.0.1                Roblox Lua Engine    "
-	DiscordInfo.TextColor3 = Color3.fromRGB(101, 108, 116)
+	DiscordInfo.TextColor3 = Color3.fromRGB(255, 108, 116)
 	DiscordInfo.TextSize = 13.000
 	DiscordInfo.TextWrapped = true
 	DiscordInfo.TextXAlignment = Enum.TextXAlignment.Left
@@ -1206,7 +1196,7 @@ function RadientPaid:Window(text,maincolor)
 		local NotificationHolder = Instance.new("TextButton")
 		NotificationHolder.Name = "NotificationHolder"
 		NotificationHolder.Parent = SettingsHolder
-		NotificationHolder.BackgroundColor3 = Color3.fromRGB(22,22,22)
+		NotificationHolder.BackgroundColor3 = Color3.fromRGB(10,10,10)
 		NotificationHolder.Position = UDim2.new(-0.00881057233, 0, -0.00266666664, 0)
 		NotificationHolder.Size = UDim2.new(0, 687, 0, 375)
 		NotificationHolder.AutoButtonColor = false
@@ -1352,7 +1342,7 @@ function RadientPaid:Window(text,maincolor)
 		HashtagLabel.Position = UDim2.new(0.765877604, 0, -0.0546001866, 0)
 		HashtagLabel.Size = UDim2.new(0, 23, 0, 37)
 		HashtagLabel.Font = Enum.Font.Gotham
-		HashtagLabel.Text = "#"
+		HashtagLabel.Text = " "
 		HashtagLabel.TextColor3 = Color3.fromRGB(79, 82, 88)
 		HashtagLabel.TextSize = 16.000
 
@@ -1557,7 +1547,7 @@ function RadientPaid:Window(text,maincolor)
 
 	end)
 
-	function RadientPaid:Notification(titletext, desctext, btntext)
+	function StarHub:Notification(titletext, desctext, btntext)
 		local NotificationHolderMain = Instance.new("TextButton")
 		local Notification = Instance.new("Frame")
 		local NotificationCorner = Instance.new("UICorner")
@@ -1591,7 +1581,7 @@ function RadientPaid:Window(text,maincolor)
 		Notification.Name = "Notification"
 		Notification.Parent = NotificationHolderMain
 		Notification.AnchorPoint = Vector2.new(0.5, 0.5)
-		Notification.BackgroundColor3 = Color3.fromRGB(15,15,15)
+		Notification.BackgroundColor3 = Color3.fromRGB(10,10,10)
 		Notification.ClipsDescendants = true
 		Notification.Position = UDim2.new(0.524819076, 0, 0.469270051, 0)
 		Notification.Size = UDim2.new(0, 0, 0, 0)
@@ -1621,7 +1611,7 @@ function RadientPaid:Window(text,maincolor)
 
 		UnderBarFrame.Name = "UnderBarFrame"
 		UnderBarFrame.Parent = UnderBar
-		UnderBarFrame.BackgroundColor3 = Color3.fromRGB(14,14,14)
+		UnderBarFrame.BackgroundColor3 = Color3.fromRGB(0,0,0)
 		UnderBarFrame.BorderSizePixel = 0
 		UnderBarFrame.Position = UDim2.new(-0.000297061284, 0, -3.76068449, 0)
 		UnderBarFrame.Size = UDim2.new(0, 346, 0, 40)
@@ -1634,29 +1624,29 @@ function RadientPaid:Window(text,maincolor)
 		Text1.Size = UDim2.new(0, 346, 0, 68)
 		Text1.Font = Enum.Font.GothamSemibold
 		Text1.Text = titletext
-		Text1.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Text1.TextColor3 = _G.Color
 		Text1.TextSize = 20.000
 
 		Text2.Name = "Text2"
 		Text2.Parent = Notification
-		Text2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Text2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		Text2.BackgroundTransparency = 1.000
 		Text2.Position = UDim2.new(0.106342293, 0, 0.317724228, 0)
 		Text2.Size = UDim2.new(0, 272, 0, 63)
 		Text2.Font = Enum.Font.Gotham
 		Text2.Text = desctext
-		Text2.TextColor3 = Color3.fromRGB(171, 172, 176)
+		Text2.TextColor3 = _G.Color
 		Text2.TextSize = 14.000
 		Text2.TextWrapped = true
 
 		AlrightBtn.Name = "AlrightBtn"
 		AlrightBtn.Parent = Notification
-		AlrightBtn.BackgroundColor3 = Color3.fromRGB(206, 61, 73)
+		AlrightBtn.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		AlrightBtn.Position = UDim2.new(0.0332369953, 0, 0.789141417, 0)
 		AlrightBtn.Size = UDim2.new(0, 322, 0, 27)
 		AlrightBtn.Font = Enum.Font.Gotham
 		AlrightBtn.Text = btntext
-		AlrightBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+		AlrightBtn.TextColor3 = _G.Color
 		AlrightBtn.TextSize = 13.000
 		AlrightBtn.AutoButtonColor = false
 
@@ -1684,7 +1674,7 @@ function RadientPaid:Window(text,maincolor)
 			TweenService:Create(
 				AlrightBtn,
 				TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-				{BackgroundColor3 = Color3.fromRGB(233, 25, 42)}
+				{BackgroundColor3 = Color3.fromRGB(0, 0, 0)}
 			):Play()
 		end)
 
@@ -1692,15 +1682,15 @@ function RadientPaid:Window(text,maincolor)
 			TweenService:Create(
 				AlrightBtn,
 				TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-				{BackgroundColor3 = Color3.fromRGB(206, 61, 73)}
+				{BackgroundColor3 = Color3.fromRGB(255, 255, 255)}
 			):Play()
 		end)
 	end
 
-	MakeDraggable(TopFramess, MainFrame)
+	MakeDraggable(TopFrame, MainFrame)
 	ServersHoldPadding.PaddingLeft = UDim.new(0, 14)
 	local ServerHold = {}
-	function ServerHold:Server(text,textgame, img)
+	function ServerHold:Server(text, LoadImage)
 		local fc = false
 		local currentchanneltoggled = ""
 		local Server = Instance.new("TextButton")
@@ -1708,23 +1698,44 @@ function RadientPaid:Window(text,maincolor)
 		local ServerIco = Instance.new("ImageLabel")
 		local ServerWhiteFrame = Instance.new("Frame")
 		local ServerWhiteFrameCorner = Instance.new("UICorner")
+		local ImageMain = Instance.new("ImageLabel")
+
+
+		ImageMain.Name = "ImageMain"
+		ImageMain.Parent = Server
+		ImageMain.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ImageMain.BackgroundTransparency = 1.000
+		ImageMain.Position = UDim2.new(0, 0, 0.2, 0)
+		ImageMain.Size = UDim2.new(0, 17, 0, 17)
+		ImageMain.Image = "http://www.roblox.com/asset/?id="..LoadImage..""
+		ImageMain.ImageColor3 = Color3.fromRGB(255, 255, 255)
 
 		Server.Name = text .. "Server"
 		Server.Parent = ServersHold
 		Server.BackgroundColor3 = Color3.fromRGB(20,20,20)
-		Server.Position = UDim2.new(0.125, 0, 0, 0)
+		Server.Position = UDim2.new(1, 0, 0, 0)
 		Server.Size = UDim2.new(0, 47, 0, 47)
 		Server.AutoButtonColor = false
 		Server.Font = Enum.Font.Gotham
 		Server.Text = ""
 		Server.BackgroundTransparency = 1
 		Server.TextTransparency = 1
-		Server.TextColor3 = Color3.fromRGB(86, 217, 252)
+		Server.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Server.TextSize = 18.000
 
 		ServerBtnCorner.CornerRadius = UDim.new(1, 0)
 		ServerBtnCorner.Name = "ServerCorner"
 		ServerBtnCorner.Parent = Server
+
+		ServerIco.Name = "ServerIco"
+		ServerIco.Parent = Server
+		ServerIco.AnchorPoint = Vector2.new(0.5, 0.5)
+		ServerIco.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ServerIco.BackgroundTransparency = 1.000
+		ServerIco.Position = UDim2.new(0.489361703, 0, 0.489361703, 0)
+		ServerIco.Size = UDim2.new(0, 0, 0, 0)
+		ServerIco.ImageTransparency = 1
+		ServerIco.Image = ""
 
 		ServerWhiteFrame.Name = "ServerWhiteFrame"
 		ServerWhiteFrame.Parent = Server
@@ -1745,6 +1756,66 @@ function RadientPaid:Window(text,maincolor)
 		local ServerTitleFrame = Instance.new("Frame")
 		local ServerTitle = Instance.new("TextLabel")
 		local ServerTitle2 = Instance.new("TextLabel")
+		local GlowFrame = Instance.new("Frame")
+		local Glow = Instance.new("ImageLabel")
+		local ServerContentFrame = Instance.new("Frame")
+		local ServerCorner = Instance.new("UICorner")
+		local ChannelCorner = Instance.new("UICorner")
+		local ChannelTitleFrame = Instance.new("Frame")
+		local Hashtag = Instance.new("TextLabel")
+		local ChannelTitle = Instance.new("TextLabel")
+		local ChannelContentFrame = Instance.new("Frame")
+		local GlowChannel = Instance.new("ImageLabel")
+		local ServerChannelHolder = Instance.new("ScrollingFrame")
+		local ServerChannelHolderLayout = Instance.new("UIListLayout")
+		local ServerChannelHolderPadding = Instance.new("UIPadding")
+
+
+		Server.Name = text .. "Server"
+		Server.Parent = ServersHold
+		Server.BackgroundColor3 = Color3.fromRGB(20,20,20)
+		Server.Position = UDim2.new(1, 0, 0, 0)
+		Server.Size = UDim2.new(0, 47, 0, 47)
+		Server.AutoButtonColor = false
+		Server.Font = Enum.Font.Gotham
+		Server.Text = ""
+		Server.BackgroundTransparency = 1
+		Server.TextTransparency = 1
+		Server.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Server.TextSize = 18.000
+
+		ServerBtnCorner.CornerRadius = UDim.new(1, 0)
+		ServerBtnCorner.Name = "ServerCorner"
+		ServerBtnCorner.Parent = Server
+
+		ServerIco.Name = "ServerIco"
+		ServerIco.Parent = Server
+		ServerIco.AnchorPoint = Vector2.new(0.5, 0.5)
+		ServerIco.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ServerIco.BackgroundTransparency = 1.000
+		ServerIco.Position = UDim2.new(0.489361703, 0, 0.489361703, 0)
+		ServerIco.Size = UDim2.new(0, 0, 0, 0)
+		ServerIco.ImageTransparency = 1
+		ServerIco.Image = ""
+
+		ServerWhiteFrame.Name = "ServerWhiteFrame"
+		ServerWhiteFrame.Parent = Server
+		ServerWhiteFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+		ServerWhiteFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ServerWhiteFrame.BackgroundTransparency = 1
+		ServerWhiteFrame.Position = UDim2.new(-0.347378343, 0, 0.502659559, 0)
+		ServerWhiteFrame.Size = UDim2.new(0, 11, 0, 10)
+
+		ServerWhiteFrameCorner.CornerRadius = UDim.new(1, 0)
+		ServerWhiteFrameCorner.Name = "ServerWhiteFrameCorner"
+		ServerWhiteFrameCorner.Parent = ServerWhiteFrame
+		ServersHold.CanvasSize = UDim2.new(0, 0, 0, ServersHoldLayout.AbsoluteContentSize.Y)
+
+		local ServerFrame = Instance.new("Frame")
+		local ServerFrame1 = Instance.new("Frame")
+		local ServerFrame2 = Instance.new("Frame")
+		local ServerTitleFrame = Instance.new("Frame")
+		local ServerTitle = Instance.new("TextLabel")
 		local GlowFrame = Instance.new("Frame")
 		local Glow = Instance.new("ImageLabel")
 		local ServerContentFrame = Instance.new("Frame")
@@ -1796,28 +1867,13 @@ function RadientPaid:Window(text,maincolor)
 		ServerTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		ServerTitle.BackgroundTransparency = 1.000
 		ServerTitle.BorderSizePixel = 0
-		ServerTitle.Position = UDim2.new(0.0751359761, 0, 0, 0)
+		ServerTitle.Position = UDim2.new(0.23, 0, 0, 0)
 		ServerTitle.Size = UDim2.new(0, 97, 0, 39)
 		ServerTitle.Font = Enum.Font.GothamSemibold
 		ServerTitle.Text = text
-		ServerTitle.TextColor3 = Color3.fromRGB(86, 217, 252)
+		ServerTitle.TextColor3 = _G.Color
 		ServerTitle.TextSize = 15.000
 		ServerTitle.TextXAlignment = Enum.TextXAlignment.Left
-
-		ServerTitle2.Name = "ServerTitle"
-		ServerTitle2.Parent = ServerTitleFrame
-		ServerTitle2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		ServerTitle2.BackgroundTransparency = 1
-		ServerTitle2.BorderSizePixel = 0
-		ServerTitle2.Position = UDim2.new(0.0541359761, 0, 7.5, 0)
-		ServerTitle2.Size = UDim2.new(0, 97, 0, 39)
-		ServerTitle2.ZIndex = 999
-		ServerTitle2.Font = Enum.Font.GothamSemibold
-		ServerTitle2.Text = textgame
-		ServerTitle2.TextColor3 = Color3.fromRGB(255, 255, 255)
-		ServerTitle2.TextTransparency = 0.8
-		ServerTitle2.TextSize = 13.000
-		ServerTitle2.TextXAlignment = Enum.TextXAlignment.Left
 
 		GlowFrame.Name = "GlowFrame"
 		GlowFrame.Parent = ServerFrame
@@ -1867,8 +1923,8 @@ function RadientPaid:Window(text,maincolor)
 		Hashtag.Position = UDim2.new(0.0279720277, 0, 0, 0)
 		Hashtag.Size = UDim2.new(0, 19, 0, 39)
 		Hashtag.Font = Enum.Font.Gotham
-		Hashtag.Text = "●"
-		Hashtag.TextColor3 = Color3.fromRGB(114, 118, 125)
+		Hashtag.Text = " "
+		Hashtag.TextColor3 = Color3.fromRGB(111, 111, 111)
 		Hashtag.TextSize = 25.000
 
 		ChannelTitle.Name = "ChannelTitle"
@@ -1880,7 +1936,7 @@ function RadientPaid:Window(text,maincolor)
 		ChannelTitle.Size = UDim2.new(0, 95, 0, 39)
 		ChannelTitle.Font = Enum.Font.GothamSemibold
 		ChannelTitle.Text = ""
-		ChannelTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+		ChannelTitle.TextColor3 = _G.Color
 		ChannelTitle.TextSize = 15.000
 		ChannelTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -2120,7 +2176,7 @@ function RadientPaid:Window(text,maincolor)
 			ChannelHolder.ScrollBarThickness = 6
 			ChannelHolder.CanvasSize = UDim2.new(0,0,0,0)
 			ChannelHolder.ScrollBarImageTransparency = 0
-			ChannelHolder.ScrollBarImageColor3 = Color3.fromRGB(86, 217, 252)
+			ChannelHolder.ScrollBarImageColor3 = Color3.fromRGB(18, 19, 21)
 			ChannelHolder.Visible = false
 			ChannelHolder.ClipsDescendants = false
 
@@ -2182,7 +2238,7 @@ function RadientPaid:Window(text,maincolor)
 				Button.Size = UDim2.new(0, 401, 0, 30)
 				Button.AutoButtonColor = false
 				Button.Font = Enum.Font.Gotham
-				Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+				Button.TextColor3 = _G.Color
 				Button.TextSize = 14.000
 				Button.Text = text
 
@@ -2236,7 +2292,7 @@ function RadientPaid:Window(text,maincolor)
 				Toggle.AutoButtonColor = false
 				Toggle.Font = Enum.Font.Gotham
 				Toggle.Text = ""
-				Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+				Toggle.TextColor3 = _G.Color
 				Toggle.TextSize = 14.000
 
 				ToggleTitle.Name = "ToggleTitle"
@@ -2247,7 +2303,7 @@ function RadientPaid:Window(text,maincolor)
 				ToggleTitle.Size = UDim2.new(0, 200, 0, 30)
 				ToggleTitle.Font = Enum.Font.Gotham
 				ToggleTitle.Text = text
-				ToggleTitle.TextColor3 = Color3.fromRGB(127, 131, 137)
+				ToggleTitle.TextColor3 = _G.Color
 				ToggleTitle.TextSize = 14.000
 				ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -2280,19 +2336,19 @@ function RadientPaid:Window(text,maincolor)
 				Icon.Position = UDim2.new(0, 7, 0, 7)
 				Icon.Size = UDim2.new(0, 13, 0, 13)
 				Icon.Image = "http://www.roblox.com/asset/?id=6035047409"
-				Icon.ImageColor3 = Color3.fromRGB(255,255,255)
+				Icon.ImageColor3 = _G.Color
 
 				Toggle.MouseButton1Click:Connect(function()
 					if toggled == false then
-						TweenService:Create(Icon,TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{ImageColor3 = Color3.fromRGB(255,255,255)}):Play()
-						TweenService:Create(ToggleFrame,TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundColor3 = Color3.fromRGB(86, 217, 252)}):Play()
+						TweenService:Create(Icon,TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{ImageColor3 = _G.Color}):Play()
+						TweenService:Create(ToggleFrame,TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundColor3 = _G.Color}):Play()
 						ToggleFrameCircle:TweenPosition(UDim2.new(0.655, -5, 0.133000001, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .3, true)
 						TweenService:Create(Icon,TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{ImageTransparency = 1}):Play()
 						Icon.Image = "http://www.roblox.com/asset/?id=6023426926"
 						wait(.1)
 						TweenService:Create(Icon,TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{ImageTransparency = 0}):Play()
 					else
-						TweenService:Create(Icon,TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{ImageColor3 = Color3.fromRGB(255,255,255)}):Play()
+						TweenService:Create(Icon,TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{ImageColor3 = _G.Color}):Play()
 						TweenService:Create(ToggleFrame,TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundColor3 = Color3.fromRGB(10,10,10)}):Play()
 						ToggleFrameCircle:TweenPosition(UDim2.new(0.234999999, -5, 0.133000001, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .3, true)
 						TweenService:Create(Icon,TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{ImageTransparency = 1}):Play()
@@ -2306,7 +2362,7 @@ function RadientPaid:Window(text,maincolor)
 				if default == true then
 					toggled = false
 					TweenService:Create(Icon,TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{ImageColor3 = Color3.fromRGB(255,255,255)}):Play()
-					TweenService:Create(ToggleFrame,TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundColor3 = Color3.fromRGB(86, 217, 252)}):Play()
+					TweenService:Create(ToggleFrame,TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundColor3 = _G.Color}):Play()
 					ToggleFrameCircle:TweenPosition(UDim2.new(0.655, -5, 0.133000001, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .3, true)
 					TweenService:Create(Icon,TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{ImageTransparency = 1}):Play()
 					Icon.Image = "http://www.roblox.com/asset/?id=6023426926"
@@ -2347,18 +2403,18 @@ function RadientPaid:Window(text,maincolor)
 				Slider.AutoButtonColor = false
 				Slider.Font = Enum.Font.Gotham
 				Slider.Text = ""
-				Slider.TextColor3 = Color3.fromRGB(255, 255, 255)
+				Slider.TextColor3 = _G.Color
 				Slider.TextSize = 14.000
 
 				SliderTitle.Name = "SliderTitle"
 				SliderTitle.Parent = Slider
-				SliderTitle.BackgroundColor3 = Color3.fromRGB(233, 25, 42)
+				SliderTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				SliderTitle.BackgroundTransparency = 1.000
 				SliderTitle.Position = UDim2.new(0, 5, 0, -4)
 				SliderTitle.Size = UDim2.new(0, 200, 0, 27)
 				SliderTitle.Font = Enum.Font.Gotham
 				SliderTitle.Text = text
-				SliderTitle.TextColor3 = Color3.fromRGB(127, 131, 137)
+				SliderTitle.TextColor3 = _G.Color
 				SliderTitle.TextSize = 14.000
 				SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -2374,7 +2430,7 @@ function RadientPaid:Window(text,maincolor)
 
 				CurrentValueFrame.Name = "CurrentValueFrame"
 				CurrentValueFrame.Parent = SliderFrame
-				CurrentValueFrame.BackgroundColor3 = Color3.fromRGB(86, 217, 252)
+				CurrentValueFrame.BackgroundColor3 = _G.Color
 				CurrentValueFrame.Size = UDim2.new((start or 0) / max, 0, 0, 8)
 
 				CurrentValueFrameCorner.Name = "CurrentValueFrameCorner"
@@ -2550,7 +2606,7 @@ function RadientPaid:Window(text,maincolor)
 				DropdownTitle.Size = UDim2.new(0, 200, 0, 29)
 				DropdownTitle.Font = Enum.Font.Gotham
 				DropdownTitle.Text = text
-				DropdownTitle.TextColor3 = Color3.fromRGB(127, 131, 137)
+				DropdownTitle.TextColor3 = _G.Color
 				DropdownTitle.TextSize = 14.000
 				DropdownTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -2585,7 +2641,7 @@ function RadientPaid:Window(text,maincolor)
 				CurrentSelectedText.Size = UDim2.new(0, 193, 0, 32)
 				CurrentSelectedText.Font = Enum.Font.Gotham
 				CurrentSelectedText.Text = "..."
-				CurrentSelectedText.TextColor3 = Color3.fromRGB(212, 212, 212)
+				CurrentSelectedText.TextColor3 = _G.Color
 				CurrentSelectedText.TextSize = 14.000
 				CurrentSelectedText.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -2596,7 +2652,7 @@ function RadientPaid:Window(text,maincolor)
 				ArrowImg.Position = UDim2.new(1.84974098, 0, 0.167428851, 0)
 				ArrowImg.Size = UDim2.new(0, 22, 0, 22)
 				ArrowImg.Image = "http://www.roblox.com/asset/?id=6034818372"
-				ArrowImg.ImageColor3 = Color3.fromRGB(212, 212, 212)
+				ArrowImg.ImageColor3 = _G.Color
 
 				DropdownFrameBtn.Name = "DropdownFrameBtn"
 				DropdownFrameBtn.Parent = DropdownFrame
@@ -2605,7 +2661,7 @@ function RadientPaid:Window(text,maincolor)
 				DropdownFrameBtn.Size = UDim2.new(0, 392, 0, 32)
 				DropdownFrameBtn.Font = Enum.Font.SourceSans
 				DropdownFrameBtn.Text = ""
-				DropdownFrameBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+				DropdownFrameBtn.TextColor3 = _G.Color
 				DropdownFrameBtn.TextSize = 14.000
 
 				local DropdownFrameMainOutline = Instance.new("Frame")
@@ -2648,7 +2704,7 @@ function RadientPaid:Window(text,maincolor)
 				DropItemHolderLabel.Size = UDim2.new(0, 193, 0, 13)
 				DropItemHolderLabel.Font = Enum.Font.Gotham
 				DropItemHolderLabel.Text = ""
-				DropItemHolderLabel.TextColor3 = Color3.fromRGB(212, 212, 212)
+				DropItemHolderLabel.TextColor3 = _G.Color
 				DropItemHolderLabel.TextSize = 14.000
 				DropItemHolderLabel.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -2660,9 +2716,9 @@ function RadientPaid:Window(text,maincolor)
 				DropItemHolder.Position = UDim2.new(0, 0, 0.215384638, 0)
 				DropItemHolder.Size = UDim2.new(0, 385, 0, 0)
 				DropItemHolder.CanvasSize = UDim2.new(0, 0, 0, 0)
-				DropItemHolder.ScrollBarThickness = 4
+				DropItemHolder.ScrollBarThickness = 6
 				DropItemHolder.BorderSizePixel = 0
-				DropItemHolder.ScrollBarImageColor3 = Color3.fromRGB(233, 25, 42)
+				DropItemHolder.ScrollBarImageColor3 = _G.Color
 
 				DropItemHolderLayout.Name = "ItemHolderLayout"
 				DropItemHolderLayout.Parent = DropItemHolder
@@ -2723,18 +2779,18 @@ function RadientPaid:Window(text,maincolor)
 					ItemText.Position = UDim2.new(0.0211081803, 0, 0, 0)
 					ItemText.Size = UDim2.new(0, 192, 0, 29)
 					ItemText.Font = Enum.Font.Gotham
-					ItemText.TextColor3 = Color3.fromRGB(212, 212, 212)
+					ItemText.TextColor3 = _G.Color
 					ItemText.TextSize = 14.000
 					ItemText.TextXAlignment = Enum.TextXAlignment.Left
 					ItemText.Text = v
 
 					Item.MouseEnter:Connect(function()
-						ItemText.TextColor3 = Color3.fromRGB(255,255,255)
+						ItemText.TextColor3 = _G.Color
 						Item.BackgroundTransparency = 0
 					end)
 
 					Item.MouseLeave:Connect(function()
-						ItemText.TextColor3 = Color3.fromRGB(212, 212, 212)
+						ItemText.TextColor3 = _G.Color
 						Item.BackgroundTransparency = 1
 					end)
 
@@ -2820,12 +2876,12 @@ function RadientPaid:Window(text,maincolor)
 					ItemText.Text = textadd
 
 					Item.MouseEnter:Connect(function()
-						ItemText.TextColor3 = Color3.fromRGB(255,255,255)
+						ItemText.TextColor3 = _G.Color
 						Item.BackgroundTransparency = 0
 					end)
 
 					Item.MouseLeave:Connect(function()
-						ItemText.TextColor3 = Color3.fromRGB(212, 212, 212)
+						ItemText.TextColor3 = _G.Color
 						Item.BackgroundTransparency = 1
 					end)
 
@@ -2849,7 +2905,7 @@ function RadientPaid:Window(text,maincolor)
 			end
 			function ChannelContent:Colorpicker(text, preset, callback)
 				local OldToggleColor = Color3.fromRGB(0, 0, 0)
-				local OldColor = Color3.fromRGB(0, 0, 0)
+				local OldColor = _G.Color
 				local OldColorSelectionPosition = nil
 				local OldHueSelectionPosition = nil
 				local ColorH, ColorS, ColorV = 1, 1, 1
@@ -3081,7 +3137,7 @@ function RadientPaid:Window(text,maincolor)
 				ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
 			end
 
-			function ChannelContent:Textbox(text, placetext, disapper, callback)
+			function ChannelContent:Texbox(text, placetext, disapper, callback)
 				local Textbox = Instance.new("Frame")
 				local TextboxTitle = Instance.new("TextLabel")
 				local TextboxFrameOutline = Instance.new("Frame")
@@ -3105,14 +3161,14 @@ function RadientPaid:Window(text,maincolor)
 				TextboxTitle.Size = UDim2.new(0, 200, 0, 29)
 				TextboxTitle.Font = Enum.Font.Gotham
 				TextboxTitle.Text = text
-				TextboxTitle.TextColor3 = Color3.fromRGB(127, 131, 137)
+				TextboxTitle.TextColor3 = _G.Color
 				TextboxTitle.TextSize = 14.000
 				TextboxTitle.TextXAlignment = Enum.TextXAlignment.Left
 
 				TextboxFrameOutline.Name = "TextboxFrameOutline"
 				TextboxFrameOutline.Parent = TextboxTitle
 				TextboxFrameOutline.AnchorPoint = Vector2.new(0.5, 0.5)
-				TextboxFrameOutline.BackgroundColor3 = Color3.fromRGB(15,15,15)
+				TextboxFrameOutline.BackgroundColor3 = _G.Color
 				TextboxFrameOutline.Position = UDim2.new(0.988442957, 0, 1.6197437, 0)
 				TextboxFrameOutline.Size = UDim2.new(0, 396, 0, 36)
 
@@ -3133,15 +3189,15 @@ function RadientPaid:Window(text,maincolor)
 				TextboxFrameCorner.Parent = TextboxFrame
 
 				TextBox.Parent = TextboxFrame
-				TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				TextBox.BackgroundColor3 = _G.Color
 				TextBox.BackgroundTransparency = 1.000
 				TextBox.Position = UDim2.new(0.0178571437, 0, 0, 0)
 				TextBox.Size = UDim2.new(0, 377, 0, 32)
 				TextBox.Font = Enum.Font.Gotham
-				TextBox.PlaceholderColor3 = Color3.fromRGB(255,255,255)
+				TextBox.PlaceholderColor3 = _G.Color
 				TextBox.PlaceholderText = placetext
 				TextBox.Text = ""
-				TextBox.TextColor3 = Color3.fromRGB(193, 195, 197)
+				TextBox.TextColor3 = _G.Color
 				TextBox.TextSize = 14.000
 				TextBox.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -3149,7 +3205,7 @@ function RadientPaid:Window(text,maincolor)
 					TweenService:Create(
 						TextboxFrameOutline,
 						TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-						{BackgroundColor3 = Color3.fromRGB(255, 170, 0)}
+						{BackgroundColor3 = _G.Color}
 					):Play()
 				end)
 
@@ -3186,7 +3242,7 @@ function RadientPaid:Window(text,maincolor)
 				Label.AutoButtonColor = false
 				Label.Font = Enum.Font.Gotham
 				Label.Text = ""
-				Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+				Label.TextColor3 = _G.Color
 				Label.TextSize = 14.000
 
 				LabelTitle.Name = "LabelTitle"
@@ -3197,7 +3253,7 @@ function RadientPaid:Window(text,maincolor)
 				LabelTitle.Size = UDim2.new(0, 200, 0, 30)
 				LabelTitle.Font = Enum.Font.Gotham
 				LabelTitle.Text = text
-				LabelTitle.TextColor3 = Color3.fromRGB(127, 131, 137)
+				LabelTitle.TextColor3 = _G.Color
 				LabelTitle.TextSize = 14.000
 				LabelTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -3250,7 +3306,7 @@ function RadientPaid:Window(text,maincolor)
 				KeybindText.TextColor3 = Color3.fromRGB(127, 131, 137)
 				KeybindText.TextSize = 14.000
 				KeybindText.TextXAlignment = Enum.TextXAlignment.Right
-                
+
 				Keybind.MouseButton1Click:Connect(function()
 					KeybindText.Text = "..."
 					local inputwait = game:GetService("UserInputService").InputBegan:wait()
@@ -3277,7 +3333,6 @@ function RadientPaid:Window(text,maincolor)
 	end
 	return ServerHold
 end
-
 Wapon = {}
 for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do  
 	if v:IsA("Tool") then
@@ -3406,9 +3461,13 @@ end
 
 -------
 
-local RadientPaid = RadientPaid:Window("Blox Fruit  | Mobile Support")
-local server = RadientPaid:Server("XYz Hub", "", "")
-local AutoFarm = server:Channel("Auto Farm")
+_G.Color = Color3.fromRGB(255, 51, 51) ---Color
+
+local Star = StarHub:Window("XYZ HUB-UI VOTE BY MODZCASTER")
+
+local StarServer = Star:Server("XYZ HUB ",5012544693) --ใส่idรูปได้
+
+local AutoFarm = StarServer:Channel("Auto Farm")
 
 Time = AutoFarm:Label("Server Time")
 
@@ -3938,8 +3997,42 @@ end)
 
 AutoFarm:Line()
 
-AutoFarm:Label(""):Refresh("Bone Shop")
+AutoFarm:Label(""):Refresh("Bone X Candy")
 
+local Candy = AutoFarm:Label("")
+
+spawn(function ()
+    while wait(.1) do
+        if TotalCounter then
+            Candy:Update("Total Candy: "..tostring(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Candies", "Check")), TotalLabelColor)
+        end
+    end
+end)
+
+AutoFarm:Button("Buy x2 Exp - 50 Candy", function()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Candies", "Buy", 1, 1)
+end)
+AutoFarm:Button("Buy Reset Stats - 75 Candy", function()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Candies", "Buy", 1, 2)
+end)
+AutoFarm:Button("Buy Reroll Race - 100 Candy", function()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Candies", "Buy", 1, 3)
+end)
+AutoFarm:Button("Buy 300Fragment - 100 Candy", function()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Candies", "Buy", 2, 1)
+end)
+AutoFarm:Button("Buy 700Fragment - 50 Candy", function()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Candies", "Buy", 2, 2)
+end)
+AutoFarm:Button("Buy Elf Hat - 250 Candy", function()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Candies", "Buy", 3, 1)
+end)
+AutoFarm:Button("Buy Santa Hat - 500 Candy", function()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Candies", "Buy", 3, 2)
+end)
+AutoFarm:Button("Buy Sleigh - 1000 Candy", function()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Candies", "Buy", 3, 3)
+end)
 local Bone = AutoFarm:Label("")
 
 spawn(function()
@@ -3947,6 +4040,8 @@ spawn(function()
 		Bone:Refresh("Total Bone : "..tostring(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check")))
 	end
 end)
+
+
 
 
 
@@ -3958,6 +4053,14 @@ AutoFarm:Toggle("Auto Buy Random Surprise", false, function(vu)
 	AutoBuySurprise = vu
 end)
 
+AutoFarm:Toggle("Auto Buy x2 EXP [50 Candy]", false, function(vu)
+	    AutoCandy1 = vu
+    while AutoCandy1 do wait()
+        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Candies", "Check") >= 50 then
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Candies", "Buy", 1, 1)
+        end
+    end
+end)
 
 if Three_World then
 
@@ -4047,7 +4150,7 @@ spawn(function()
 	end
 end)
 
-local Stats = server:Channel("Auto Stats")
+local Stats = StarServer:Channel("Auto Stats")
 
 Stats:Toggle("Melee", _G.Melee, function(vu)
     Mad = vu
@@ -4106,7 +4209,7 @@ spawn(function()
 	end
 end)
 
-local Tp = server:Channel("Teleport")
+local Tp = StarServer:Channel("Teleport")
 
 function TP(P1)
     Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
@@ -4385,7 +4488,7 @@ elseif Three_World then
 	end)
 end
 
-local Players = server:Channel("Combat | PvP")
+local Players = StarServer:Channel("Combat | PvP")
 
 SelectKillWeapon = ""
 
@@ -4798,7 +4901,7 @@ Players:Slider("Gravity", 0,500,196, function(t)
     workspace.Gravity = t
 end)
 
-local Raid = server:Channel("Esp | Raid")
+local Raid = StarServer:Channel("Esp | Raid")
 if New_World then
 	Raid:Button("Teleport To Lab", function()
 		TP2(CFrame.new(-6438.73535, 250.645355, -4501.50684))
@@ -5218,7 +5321,7 @@ function UpdateFruits()
 	end
 end
 
-local Devil = server:Channel("Fruit-Sniper")
+local Devil = StarServer:Channel("Fruit-Sniper")
 
 SelectDevil = ""
 CheckF = false
@@ -5467,7 +5570,7 @@ spawn(function()
     end
 end)
 
-local BuyItem = server:Channel("Item Shop!")
+local BuyItem = StarServer:Channel("Item Shop!")
 
 BuyItem:Label("Abilities")
 BuyItem:Button("Skyjump", function()
@@ -5630,7 +5733,7 @@ BuyItem:Button("Swordsman Hat", function()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Swordsman Hat")
 end)
 
-local Setting = server:Channel("Setting")
+local Setting = StarServer:Channel("Setting")
 
 Setting:Button("Delete/Destroy UI", function()
 	if game:GetService("CoreGui"):FindFirstChild("XYZ HUB GUI") then
@@ -5790,9 +5893,18 @@ Setting:Button("Boost Fps", function()
     end
 end)
 
+Setting:Line()
 
+Setting:Label("Credit Vote Ui: MODZCASTER")
 
+Setting:Button("Copy Link Discord MODZCASTER", function()
+   setclipboard("")
+end)
+Setting:Label("Credit Scrips: x2NiceXz")
 
+Setting:Label("Credit Obfuscator: XYZKUNG")
+
+Setting:Line()
 
 function CheckLevel()
     local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
