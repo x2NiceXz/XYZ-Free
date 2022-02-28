@@ -5882,11 +5882,15 @@ Setting:Line()
 Setting:Label("Credit Vote Ui: MODZCASTER")
 
 Setting:Button("Copy Link Discord MODZCASTER", function()
-   setclipboard("")
+   setclipboard("https://discord.com/invite/BfWSWcKGx5")
 end)
 Setting:Label("Credit Scrips: x2NiceXz")
 
-Setting:Label("Credit Obfuscator: XYZKUNG")
+Setting:Button("Copy Link Discord XYZHUB", function()
+   setclipboard("https://discord.gg/2qee7D96yw")
+end)
+
+Setting:Label("Credit Obfuscator: x2NiceXz")
 
 Setting:Line()
 
