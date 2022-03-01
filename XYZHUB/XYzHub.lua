@@ -8238,4 +8238,492 @@ spawn(function()
 							end
 						else
 							repeat wait(.1)
-								TP(game.Workspace.Enemies:FindFirstChild("Marine Commodore [Lv. 1700]").HumanoidRootPart.CFrame * CFrame.ne
+								TP(game.Workspace.Enemies:FindFirstChild("Marine Commodore [Lv. 1700]").HumanoidRootPart.CFrame * CFrame.new(0,25,10))
+							until AutoFarmObservation == false or game.Players.LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel")
+						end
+					else
+						TP(CFrame.new(2445.59204, 273.184479, -7087.646))
+						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+					end
+				end
+			end
+		end)
+	end
+end)
+
+spawn(function()
+	while wait() do wait(Sec)
+		pcall(function()
+			if AutoFarmObservation and not game.Players.LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") then
+				game:GetService('VirtualUser'):CaptureController()
+				game:GetService('VirtualUser'):SetKeyDown('0x65')
+				wait(2)
+				game:GetService('VirtualUser'):SetKeyUp('0x65')
+			end
+		end)
+	end
+end)
+
+spawn(function()
+	while wait() do
+		if AutoObservation then
+			if not game.Players.LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") then
+				wait(1)
+				game:GetService('VirtualUser'):CaptureController()
+				game:GetService('VirtualUser'):SetKeyDown('0x65')
+			   	wait(2)
+			   	game:GetService('VirtualUser'):SetKeyUp('0x65')
+			end
+		end
+	end
+end)
+
+spawn(function()
+    while wait(.1) do
+        if Auto_Haki then
+            if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
+            end
+        end
+    end
+end)
+
+spawn(function()
+	while wait(.1) do
+		if Mad then
+			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Melee", SelectPoint)
+		end
+	end
+end)
+
+spawn(function()
+	while wait(.1) do
+		if Gan then
+			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Defense", SelectPoint)
+		end
+	end
+end)
+
+spawn(function()
+	while wait(.1) do
+		if Dap then
+			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Sword", SelectPoint)
+		end
+	end
+end)
+
+spawn(function()
+	while wait(.1) do
+		if Pun then
+			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Gun", SelectPoint)
+		end
+	end
+end)
+
+spawn(function()
+	while wait(.1) do
+		if DevilFruit then
+			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Demon Fruit", SelectPoint)
+		end
+	end
+end)
+
+spawn(function()
+	while wait(.1) do
+		if _G.AutoStat then
+			for i,v in pairs(_G.AutoStat) do
+				if v == "Melee" and game.Players.LocalPlayer.Data.Stats.Melee.Level.Value ~= 2100 then
+					repeat game:GetService("RunService").Heartbeat:wait()
+						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Melee", 1)
+					until game.Players.LocalPlayer.Data.Stats.Melee.Level.Value == 2100
+				elseif v == "Defense" and game.Players.LocalPlayer.Data.Stats.Defense.Level.Value ~= 2100 then
+					repeat game:GetService("RunService").Heartbeat:wait()
+						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Defense", 1)
+					until game.Players.LocalPlayer.Data.Stats.Defense.Level.Value == 2100
+				elseif v == "Sword" and game.Players.LocalPlayer.Data.Stats.Sword.Level.Value ~= 2100 then
+					repeat game:GetService("RunService").Heartbeat:wait()
+						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Sword", 1)
+					until game.Players.LocalPlayer.Data.Stats.Sword.Level.Value == 2100
+				elseif v == "Gun" and game.Players.LocalPlayer.Data.Stats.Gun.Level.Value ~= 2100 then
+					repeat game:GetService("RunService").Heartbeat:wait()
+						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Gun", 1)
+					until game.Players.LocalPlayer.Data.Stats.Gun.Level.Value == 2100
+				elseif v == "DevilFruit" and game.Players.LocalPlayer.Data.Stats["Demon Fruit"].Level.Value ~= 2100 then
+					repeat game:GetService("RunService").Heartbeat:wait()
+						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Demon Fruit", 1)
+					until game.Players.LocalPlayer.Data.Stats.Gun.Level.Value == 2100
+				end
+			end
+		end
+	end
+end)
+
+spawn(function()
+	pcall(function()
+		while wait() do
+			if _G.Redeem and game.Players.LocalPlayer.Data.Level.Value >= 850 then
+				function UseCode(Text)
+					game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(Text)
+				end
+                UseCode("UPD16")
+                UseCode("2BILLION")
+                UseCode("UPD15")
+                UseCode("FUDD10")
+                UseCode("BIGNEWS")
+                UseCode("THEGREATACE")
+                UseCode("SUB2GAMERROBOT_EXP1")
+                UseCode("StrawHatMaine")
+                UseCode("Sub2OfficialNoobie")
+                UseCode("SUB2NOOBMASTER123")
+                UseCode("Sub2Daigrock")
+                UseCode("Axiore")
+                UseCode("TantaiGaming")
+                UseCode("STRAWHATMAINE")
+			end
+		end
+	end)
+end)
+
+if _G.BoostFPS then
+	local decalsyeeted = true
+    local g = game
+    local w = g.Workspace
+    local l = g.Lighting
+    local t = w.Terrain
+    t.WaterWaveSize = 0
+    t.WaterWaveSpeed = 0
+    t.WaterReflectance = 0
+    t.WaterTransparency = 0
+    l.GlobalShadows = false
+    l.FogEnd = 9e9
+    l.Brightness = 0
+    settings().Rendering.QualityLevel = "Level01"
+    for i, v in pairs(g:GetDescendants()) do
+        if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then 
+            v.Material = "Plastic"
+            v.Reflectance = 0
+        elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+            v.Transparency = 1
+        elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+            v.Lifetime = NumberRange.new(0)
+        elseif v:IsA("Explosion") then
+            v.BlastPressure = 1
+            v.BlastRadius = 1
+        elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
+            v.Enabled = false
+        elseif v:IsA("MeshPart") then
+            v.Material = "Plastic"
+            v.Reflectance = 0
+            v.TextureID = 10385902758728957
+        end
+    end
+    for i, e in pairs(l:GetChildren()) do
+        if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+            e.Enabled = false
+        end
+    end
+end
+
+spawn(function()
+	pcall(function()
+		while wait(.1) do
+			if AutoSetSpawn and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
+				game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+			end
+		end
+	end)
+end)
+
+spawn(function()
+	while wait(.1) do
+		if USEBF then
+			pcall(function()
+				CheckLevel()
+                if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Human-Human: Buddha") then
+                    if SkillZ and game.Players.LocalPlayer.Character.HumanoidRootPart.Size == Vector3.new(2, 2.0199999809265, 1) then
+						local args = {
+							[1] = PosMonMasteryFruit.Position
+						}
+						game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name].RemoteEvent:FireServer(unpack(args))
+                        game:GetService("VirtualInputManager"):SendKeyEvent(true,"Z",false,game)
+                        wait(.3)
+                        game:GetService("VirtualInputManager"):SendKeyEvent(false,"Z",false,game)
+                    end
+                    if SkillX then
+						local args = {
+							[1] = PosMonMasteryFruit.Position
+						}
+						game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name].RemoteEvent:FireServer(unpack(args))
+                        game:GetService("VirtualInputManager"):SendKeyEvent(true,"X",false,game)
+                        game:GetService("VirtualInputManager"):SendKeyEvent(false,"X",false,game)
+                    end
+                    if SkillC then
+						local args = {
+							[1] = PosMonMasteryFruit.Position
+						}
+						game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name].RemoteEvent:FireServer(unpack(args))
+                        game:GetService("VirtualInputManager"):SendKeyEvent(true,"C",false,game)
+                        game:GetService("VirtualInputManager"):SendKeyEvent(false,"C",false,game)
+                    end
+                    if SkillV then
+						local args = {
+							[1] = PosMonMasteryFruit.Position
+						}
+						game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name].RemoteEvent:FireServer(unpack(args))
+                        game:GetService("VirtualInputManager"):SendKeyEvent(true,"V",false,game)
+                        game:GetService("VirtualInputManager"):SendKeyEvent(false,"V",false,game)
+                    end
+                elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value) then
+					if SkillZ then
+						local args = {
+							[1] = PosMonMasteryFruit.Position
+						}
+						game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name].RemoteEvent:FireServer(unpack(args))
+						game:GetService("VirtualInputManager"):SendKeyEvent(true,"Z",false,game)
+                        game:GetService("VirtualInputManager"):SendKeyEvent(false,"Z",false,game)
+                    end
+                    if SkillX then
+						local args = {
+							[1] = PosMonMasteryFruit.Position
+						}
+						game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name].RemoteEvent:FireServer(unpack(args))
+                        game:GetService("VirtualInputManager"):SendKeyEvent(true,"X",false,game)
+                        game:GetService("VirtualInputManager"):SendKeyEvent(false,"X",false,game)
+                    end
+                    if SkillC then
+						local args = {
+							[1] = PosMonMasteryFruit.Position
+						}
+						game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name].RemoteEvent:FireServer(unpack(args))
+                        game:GetService("VirtualInputManager"):SendKeyEvent(true,"C",false,game)
+                        game:GetService("VirtualInputManager"):SendKeyEvent(false,"C",false,game)
+                    end
+                    if SkillV then
+						local args = {
+							[1] = PosMonMasteryFruit.Position
+						}
+						game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name].RemoteEvent:FireServer(unpack(args))
+                        game:GetService("VirtualInputManager"):SendKeyEvent(true,"V",false,game)
+                        game:GetService("VirtualInputManager"):SendKeyEvent(false,"V",false,game)
+                    end
+                end
+			end)
+		end
+	end
+end)
+
+spawn(function()
+    pcall(function()
+		game:GetService("RunService").RenderStepped:Connect(function()
+            if USEBF and PosMonMasteryFruit ~= nil then
+                local args = {
+                    [1] = PosMonMasteryFruit.Position
+                }
+                game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Data.DevilFruit.Value].RemoteEvent:FireServer(unpack(args))
+            end
+        end)
+    end)
+end)
+
+spawn(function()
+	pcall(function()
+		while wait(.1) do
+			if PressHomeStopTween then
+				if game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.Home) then
+					TP(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
+				end
+			end
+		end
+	end)
+end)
+
+spawn(function()
+	pcall(function()
+		while wait() do
+			for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do  
+				if v:IsA("Tool") then
+					if v:FindFirstChild("RemoteFunctionShoot") then 
+						SelectToolWeaponGun = v.Name
+					end
+				end
+			end
+		end
+	end)
+end)
+
+spawn(function()
+	pcall(function()
+		while wait(.1) do
+			for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do  
+				if v:IsA("Tool") then
+					if v.ToolTip == "Melee" then
+						SelectToolWeaponMelee = v.Name
+					end
+				end
+			end
+		end
+	end)
+end)
+
+spawn(function()
+	pcall(function()
+		while wait(.1) do
+			if _G.AutoRaid or NextIsland then
+				workspace.Gravity = 0
+			else
+				workspace.Gravity = 196
+			end
+		end
+	end)
+end)
+
+spawn(function()
+	while wait() do
+		pcall(function()
+			CheckLevel()
+			for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+				if Auto_Farm and MagnetActive and Magnet then
+					if v.Name == Ms and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+						if v.Name == "Factory Staff [Lv. 800]" then
+							if (v.HumanoidRootPart.Position - PosMon.Position).Magnitude <= 250 then
+								v.Head.CanCollide = false
+								v.HumanoidRootPart.CanCollide = false
+								v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+								v.HumanoidRootPart.CFrame = PosMon
+								sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+							end
+						elseif v.Name == Ms then
+							if (v.HumanoidRootPart.Position - PosMon.Position).Magnitude <= 400 then
+								v.Head.CanCollide = false
+								v.HumanoidRootPart.CanCollide = false
+								v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+								v.HumanoidRootPart.CFrame = PosMon
+								sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+							end
+						end
+					end
+				elseif FarmMasteryFruit and MasteryBFMagnetActive and MasteryMagnet then
+					if v.Name == "Monkey [Lv. 14]" then
+						if (v.HumanoidRootPart.Position - PosMonMasteryFruit.Position).Magnitude <= 250 then
+							v.Head.CanCollide = false
+							v.HumanoidRootPart.CanCollide = false
+							v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+							v.HumanoidRootPart.CFrame = PosMonMasteryFruit
+							sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+						end
+					elseif v.Name == "Factory Staff [Lv. 800]" then
+						if (v.HumanoidRootPart.Position - PosMonMasteryFruit.Position).Magnitude <= 250 then
+							v.Head.CanCollide = false
+							v.HumanoidRootPart.CanCollide = false
+							v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+							v.HumanoidRootPart.CFrame = PosMonMasteryFruit
+							sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+						end
+					elseif v.Name == Ms then
+						if (v.HumanoidRootPart.Position - PosMonMasteryFruit.Position).Magnitude <= 400 then
+							v.Head.CanCollide = false
+							v.HumanoidRootPart.CanCollide = false
+							v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+							v.HumanoidRootPart.CFrame = PosMonMasteryFruit
+							sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+						end
+					end
+				elseif FarmMasteryGun and MasteryGunMagnetActive and MasteryMagnet then
+					if v.Name == "Monkey [Lv. 14]" then
+						if (v.HumanoidRootPart.Position - PosMonMasteryGun.Position).Magnitude <= 250 then
+							v.Head.CanCollide = false
+							v.HumanoidRootPart.CanCollide = false
+							v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+							v.HumanoidRootPart.CFrame = PosMonMasteryGun
+							sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+						end
+					elseif v.Name == "Factory Staff [Lv. 800]" then
+						if (v.HumanoidRootPart.Position - PosMonMasteryGun.Position).Magnitude <= 250 then
+							v.Head.CanCollide = false
+							v.HumanoidRootPart.CanCollide = false
+							v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+							v.HumanoidRootPart.CFrame = PosMonMasteryGun
+							sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+						end
+					elseif v.Name == Ms then
+						if (v.HumanoidRootPart.Position - PosMonMasteryGun.Position).Magnitude <= 400 then
+							v.Head.CanCollide = false
+							v.HumanoidRootPart.CanCollide = false
+							v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+							v.HumanoidRootPart.CFrame = PosMonMasteryGun
+							sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+						end
+					end
+				elseif AutoBartilo and MagnetBatilo and Magnet then
+					if v.Name == "Swan Pirate [Lv. 775]" and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+						v.Head.CanCollide = false
+						v.HumanoidRootPart.CanCollide = false
+						v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+						v.HumanoidRootPart.CFrame = PosMonBartilo
+						sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+					end
+				elseif AutoRengoku and RengokuMagnet and Magnet then
+					if (v.Name == "Snow Lurker [Lv. 1375]" or v.Name == "Arctic Warrior [Lv. 1350]") and (v.HumanoidRootPart.Position - PosMonRengoku.Position).Magnitude <= 350 then
+						v.Head.CanCollide = false
+						v.HumanoidRootPart.CanCollide = false
+						v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+						v.HumanoidRootPart.CFrame = PosMonRengoku
+						sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+					end
+				elseif Auto_Bone and BoneMagnet and Magnet then
+					if (v.Name == "Reborn Skeleton [Lv. 1975]" or v.Name == "Living Zombie [Lv. 2000]" or v.Name == "Demonic Soul [Lv. 2025]" or v.Name == "Posessed Mummy [Lv. 2050]") and (v.HumanoidRootPart.Position - MainMonBone.Position).Magnitude <= 300 then
+						v.Head.CanCollide = false
+						v.HumanoidRootPart.CanCollide = false
+						v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+						v.HumanoidRootPart.CFrame = MainMonBone
+						sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+					end
+				elseif AutoEcto and EctoplasMagnet and Magnet then
+					if string.find(v.Name, "Ship") and (v.HumanoidRootPart.Position - PosMonEctoplas.Position).Magnitude <= 300 then
+						v.Head.CanCollide = false
+						v.HumanoidRootPart.CanCollide = false
+						v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+						v.HumanoidRootPart.CFrame = PosMonEctoplas
+						sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+					end
+				elseif AutoEvoRace and EvoMagnet and Magnet then
+					if v.Name == "Zombie [Lv. 950]" and (v.HumanoidRootPart.Position - PosMonZombie.Position).Magnitude <= 300 then
+						v.Head.CanCollide = false
+						v.HumanoidRootPart.CanCollide = false
+						v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+						v.HumanoidRootPart.CFrame = PosMonZombie
+						sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+					end
+				elseif AutoCitizen and CitizenMagnet and Magnet then
+					if v.Name == "Forest Pirate [Lv. 1825]" and (v.HumanoidRootPart.Position - PosMonCitizen.Position).Magnitude <= 300 then
+						v.Head.CanCollide = false
+						v.HumanoidRootPart.CanCollide = false
+						v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+						v.HumanoidRootPart.CFrame = PosMonZombie
+						sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+					end
+				elseif AutoFarmSelectMonster and AutoFarmSelectMonsterMagnet and Magnet then
+					if v.Name == Ms and (v.HumanoidRootPart.Position - PosMonSelectMonster.Position).Magnitude <= 400 then
+						v.Head.CanCollide = false
+						v.HumanoidRootPart.CanCollide = false
+						v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+						v.HumanoidRootPart.CFrame = PosMonSelectMonster
+						sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+					end
+				end
+			end
+		end)
+	end
+end)
+
+warn("Anti AFK : Active")
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+   wait(1)
+   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+
+if _G.HideUi then
+	game:GetService("VirtualInputManager"):SendKeyEvent(true,"RightControl",false,game)
+end
