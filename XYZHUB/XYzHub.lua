@@ -5784,7 +5784,7 @@ Setting:Toggle("Hide HitBox", true, function(t)
     HideHit = t
 end)
 
-Setting:Toggle("BringMob/Magnet", false, function(vu)
+Setting:Toggle("BringMob/Magnet", true, function(vu)
     Magnet = vu
 end)
 
